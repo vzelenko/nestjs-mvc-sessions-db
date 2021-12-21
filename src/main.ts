@@ -6,10 +6,14 @@ import { engine } from 'express-handlebars';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const viewsPath = join(__dirname, './views');
+
+  const publicPath = join(__dirname, '..', 'public');
+  const viewsPath = join(__dirname, '..', 'views');
+  app.useStaticAssets(publicPath);
+  app.setBaseViewsDir(viewsPath);
   app.engine('hbs', engine({ extname: '.hbs', defaultLayout: 'main' }));
-  app.set('views', viewsPath);
   app.set('view engine', 'hbs');
+  // app.enable('view cache');
 
   await app.listen(3000);
 }
