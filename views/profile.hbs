@@ -6,7 +6,8 @@
                 <h2 class="mdl-card__title-text">About {{ user.username }}</h2>
             </div>
             <div>
-                <figure><img src="http://lorempixel.com/400/200/cats/{{ user.pet.picId }}">
+                <figure>
+                    <img src="https://picsum.photos/id/{{ user.pet.picId }}/400/200">
                     <figcaption>{{ user.username }}'s friend {{ user.pet.name }}</figcaption>
                 </figure>
                 <div class="mdl-card__actions mdl-card--border">
