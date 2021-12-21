@@ -16,8 +16,8 @@ import { AuthenticatedGuard } from './common/guards/authenticated.guard';
 export class AppController {
   @Get('/')
   @Render('login')
-  index() {
-    return;
+  index(@Request() req): { message: string } {
+    return { message: req.flash('loginError') };
   }
 
   @UseGuards(LoginGuard)
