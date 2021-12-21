@@ -1,12 +1,16 @@
+import { join } from 'path';
+
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
-import { AppModule } from './app.module';
 
+import * as helmet from 'helmet';
+import * as csurf from 'csurf';
 import * as session from 'express-session';
 import flash = require('connect-flash');
 import { engine } from 'express-handlebars';
 import * as passport from 'passport';
+
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -19,6 +23,12 @@ async function bootstrap() {
   app.set('view engine', 'hbs');
   // app.enable('view cache');
 
+  // SECURITY SETUP
+  app.use(helmet());
+  app.enableCors();
+  app.use(csurf());
+
+  // SESSION SETUP
   app.use(
     session({
       secret: 'nest cats',
@@ -27,9 +37,17 @@ async function bootstrap() {
     }),
   );
 
+  // PASSPORT AUTH SETUP
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // FLASH MESSAGES
   app.use(flash());
+
+  // DB CONFIG
+
+  // RATE LIMITING
+  // TODO: https://docs.nestjs.com/security/rate-limiting
 
   await app.listen(3000);
 }
