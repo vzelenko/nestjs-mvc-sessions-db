@@ -11,7 +11,7 @@ import { engine } from 'express-handlebars';
 import * as passport from 'passport';
 
 import { AppModule } from './app.module';
-import { AuthExceptionFilter } from './common/filters/auth-exceptions.filters';
+import { AuthExceptionFilter } from './auth/auth-exceptions.filters';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
