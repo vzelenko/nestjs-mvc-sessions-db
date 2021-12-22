@@ -19,4 +19,22 @@ export class AppController {
   getProfile(@Request() req): { user: User; title: string } {
     return { user: req.user, title: 'Profile' };
   }
+
+  @Get('/about')
+  @Render('about')
+  about(@Request() req): { title: string } {
+    return { title: 'About' };
+  }
+
+  @Get('/contact')
+  @Render('contact')
+  contact(@Request() req): { title: string } {
+    return { title: 'Contact Us' };
+  }
+
+  @Get('/error')
+  @Render('error')
+  error(@Request() req): { title: string } {
+    return { title: 'Error' };
+  }
 }
