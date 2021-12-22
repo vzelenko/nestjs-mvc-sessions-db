@@ -4,13 +4,14 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
+import * as csrf from 'csurf';
 import * as session from 'express-session';
 import flash = require('connect-flash');
 import { engine } from 'express-handlebars';
 import * as passport from 'passport';
 
 import { AppModule } from './app.module';
+import { AuthExceptionFilter } from './common/filters/auth-exceptions.filters';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -22,11 +23,6 @@ async function bootstrap() {
   app.engine('hbs', engine({ extname: '.hbs', defaultLayout: 'main' }));
   app.set('view engine', 'hbs');
   // app.enable('view cache');
-
-  // SECURITY SETUP
-  app.use(helmet());
-  app.enableCors();
-  app.use(csurf());
 
   // SESSION SETUP
   app.use(
@@ -41,8 +37,29 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // SECURITY SETUP
+  app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          'data:',
+          'https://cdn.jsdelivr.net',
+          'https://maxcdn.bootstrapcdn.com',
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com',
+        ],
+      },
+    }),
+  );
+  app.enableCors();
+  app.use(csrf({ value: (req) => req.csrfToken() }));
+
   // FLASH MESSAGES
   app.use(flash());
+
+  app.useGlobalFilters(new AuthExceptionFilter());
 
   // DB CONFIG
 

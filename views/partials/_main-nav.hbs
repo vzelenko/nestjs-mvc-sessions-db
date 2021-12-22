@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-secondary text-light">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="/">Nest JS MVC Starter</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-menu">
+            <div class="navbar-nav ms-auto me-5">
+                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" href="/contact">Contact</a>
+            </div>
+            <div class="navbar-nav">
+                {{#if user}}
+                    <a class="nav-link me-3" href="/profile">
+                        <span class="material-icons align-middle">settings</span>
+                    </a>
+                    <a class="btn btn-outline-light" href="/logout">Log Out</a>
+                {{else}}
+                    <a class="btn btn-outline-light" href="/login">Log In</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</nav>

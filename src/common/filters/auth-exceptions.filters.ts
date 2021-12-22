@@ -15,14 +15,22 @@ export class AuthExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    if (
-      exception instanceof UnauthorizedException ||
-      exception instanceof ForbiddenException
-    ) {
+    if (this.forHtml(exception, request)) {
       request.flash('loginError', 'Please try again!');
-      response.redirect('/');
+      response.redirect('/login');
     } else {
       response.redirect('/error');
     }
+  }
+
+  private forHtml(exception: HttpException, request: Request): boolean {
+    if (
+      exception instanceof UnauthorizedException ||
+      exception instanceof ForbiddenException ||
+      request.is('html')
+    ) {
+      return true;
+    }
+    return false;
   }
 }
