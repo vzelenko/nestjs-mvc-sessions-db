@@ -16,8 +16,8 @@ import { AuthExceptionFilter } from './auth/auth-exceptions.filters';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  const publicPath = join(__dirname, '..', 'public');
-  const viewsPath = join(__dirname, '..', 'views');
+  const publicPath = join(__dirname, 'public');
+  const viewsPath = join(__dirname, 'views');
   app.useStaticAssets(publicPath);
   app.setBaseViewsDir(viewsPath);
   app.engine('hbs', engine({ extname: '.hbs', defaultLayout: 'main' }));

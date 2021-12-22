@@ -4,7 +4,7 @@
   "compilerOptions": {
     "webpack": false,
     "watchAssets": true,
-    "assets": [{ "include": "**/*.hbs" }, { "include": "**/*.ico" }]
+    "assets": [{ "include": "**/*.hbs" }, { "include": "public/**/*" }]
   },
   "generateOptions": {
     "spec": false
