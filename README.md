@@ -1,34 +1,31 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+**MVC Sessions** template has been built based on the [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository. Its goal is to provide a simple starte kit for building web applications with NestJS, offering production-ready secure implementation.
 
-## Details
+It is this author's philosophy that SPA and GraphQL based implementations have their place and virtues, yet Standard aplication security concerns should be addressed on the server side and be session-based.
 
-The base structure was built following this tutorial: https://dev.to/nestjs/authentication-and-sessions-for-mvc-apps-with-nestjs-55a4
+### Guiding Principals and Philosophy
+
+1. Several static pages (About, Contact, Errors)
+1. Login/Logout/Profile pages (with external providers and 2FA options)
+1. Configurable DB connectivity (with ORM capability)
+1. Protected content areas (MVC modules, SPA components, API endpoints, Microservices)
+1. Minimize the use of JWT as it is generally less secure than db session
+
+### Single Page Applications and Reactive JS Frameworks (SPAs)
+
+1. JS Frameworks like [Vue](https://vuejs.org/), [React](https://reactjs.org/), etc. belong on screens where complex UI interactions are required
+1. SPA routing should be avoided at all costs UNLESS the application must be available offline and content does not change at high frequency
+1. SPA elements should be sprinkled on the protected pages via:
+   ```html
+   <script type="module" src="your-spa-module.js" />
+   ```
+
+## Credits
+
+- [Nest](https://github.com/nestjs/nest)
+- [Foundational Tutorial](https://dev.to/nestjs/authentication-and-sessions-for-mvc-apps-with-nestjs-55a4)
+- [DB Integration (TypeORM)](https://codersera.com/blog/how-to-integrate-dotenv-with-nestjs-and-typeorm/)
 
 ## Installation
 
@@ -64,13 +61,7 @@ $ npm run test:cov
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Please submit issues for any problems incountered, and they'll be dealt with as time permits.
 
 ## License
 
